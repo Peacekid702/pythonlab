@@ -1,0 +1,30 @@
+class Rocket():
+    def __init__(self, total_weight, amount_of_fuel, engine_status):      
+        self.total_weight = total_weight
+        self.amount_of_fuel = amount_of_fuel
+        self.engine_status = engine_status
+    def spend_fuel(self, count):              
+        self.amount_of_fuel -= count           
+        self.total_weight -= count             
+        if self.amount_of_fuel <= 0:
+            self.amount_of_fuel = 0
+            self.engine_status = False
+            return False
+        elif self.amount_of_fuel > 0:
+            self.engine_status = True
+            return True
+    def get_fuel_level(self):                                       
+        return f'quantity of fuel: {self.amount_of_fuel}'
+    def get_total_weight(self):                                     
+        return f'general mass: {self.total_weight}'
+    def get_is_engine_running(self):                                
+        return f'state of the engine: {self.engine_status}'
+
+def main():
+    Roketer = Rocket(1000, 500, True)
+    while Roketer.amount_of_fuel > 0:
+        Roketer.spend_fuel(50)
+        print(Roketer.get_fuel_level(), end='; ')
+        print(Roketer.get_total_weight(), end='; ')
+        print(Roketer.get_is_engine_running())
+main()
